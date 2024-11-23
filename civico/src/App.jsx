@@ -63,6 +63,7 @@ import {
   getObjectsByGroup,
   steps,
   tutorial_interface,
+  tutorialDemo,
 } from "./utility/content";
 import { PrivateRoute } from "./PrivateRoute";
 import {
@@ -427,6 +428,70 @@ export const VoiceInput = ({
     resetMessages();
     onChange(finalTranscript.toLocaleLowerCase());
   };
+
+  /**
+   *   const [isListening, setIsListening] = useState(false);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+    isMicrophoneAvailable,
+  } = useSpeechRecognition();
+  const handleVoiceStart = () => {
+    // resetFeedbackMessages();
+
+    // setGrade("");
+    setIsListening(true);
+    setAiListening(false);
+    resetTranscript();
+    // resetMessages();
+    setPromptText(""); // Clear input when starting voice
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: lang === "en" ? "en-US" : "es-MX",
+    });
+  };
+
+
+    const handleVoiceStop = () => {
+    setIsListening(false);
+    SpeechRecognition.stopListening();
+    let finalTranscript = transcript;
+    if (isCodeEditor) {
+      finalTranscript = applySymbolMappings(finalTranscript);
+    }
+    resetTranscript();
+    resetMessages();
+    onChange(finalTranscript.toLocaleLowerCase());
+  };
+  useEffect(() => {
+    let modifiedTranscript = transcript;
+
+    if (listening) {
+      onChange(modifiedTranscript);
+    } else if (listening && aiListening) {
+      setAiTranscript(modifiedTranscript);
+      onChange(modifiedTranscript); // Display AI transcript in the input field
+    }
+
+    // Reset the timeout whenever the transcript changes
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+
+    if (aiListening && modifiedTranscript) {
+      pauseTimeoutRef.current = setTimeout(() => {
+        handleAiStop();
+      }, 1750); // 1 second
+    } else if (isListening && modifiedTranscript) {
+      pauseTimeoutRef.current = setTimeout(() => {
+        handleVoiceStop();
+      }, 1750); // 1 second
+    }
+  }, [transcript, listening, onChange, isCodeEditor, aiListening]);
+
+   */
 
   const handleAiStart = () => {
     resetFeedbackMessages();
@@ -1688,10 +1753,7 @@ const Step = ({
     if (currentStep === 9) {
       const npub = localStorage.getItem("local_npub");
 
-      if (
-        localStorage.getItem("passcode") !==
-        import.meta.env.VITE_PATREON_PASSCODE
-      ) {
+      if (localStorage.getItem("passcode") === "IDK MAN") {
         await incrementToSubscription(npub, currentStep);
         navigate("/subscription");
       } else {
@@ -1956,11 +2018,11 @@ const Step = ({
         )},
 
 
-        The request: Create/invent a completely new and custom adaptive question and feel free to explore creativity using the same interface with group, title, description, <question_type> and the custom question object interface. Here are the types of question_types (e.g isMultipleChoice, isCodeCompletion) and their respective question objects that we've used in the tutorial group, so that you can understand how questions are designed to encourage variance in learning: ${JSON.stringify(getObjectsByGroup("tutorial", steps[userLanguage]))}. It is extremely important to understand that the data types used in the "answer" field are specific and must not change under any circumstance, or else the request will fail due to unexpected data type.
+        The request: Create/invent a custom and adaptive civics question for the for the Naturalization Test for citizenship by the USCIS using the same interface with group, title, description, <question_type> and the custom question object interface that we're providing. Here are the types of question_types (e.g isMultipleChoice, isCodeCompletion) and their respective question objects that we've used in the tutorial group, so that you can understand how questions are designed to encourage variance in learning: ${JSON.stringify(getObjectsByGroup("tutorial", tutorialDemo[userLanguage]))}. It is extremely important to understand that the data types used in the "answer" field are specific and must not change under any circumstance, or else the request will fail due to unexpected data type.
         
         Remember to design and inspire a new question, you must select a different but valid question_type than the one you've received, strictly based on the interfaces ive provided with the tutorials. Do not deviate and create a new question type or else the UI will fail with your response. 
         
-        Remember, the types are things like isText, isTerminal, isMultipleChoice, isCodeCompletion, etc. But it must strictly be a different UI type than the step that the user started you off with. For example, if the user is sending you an isText: true question, you can't respond with an isText: true output.
+        Remember, the types are things like isMultipleAnswerChoice, isSingleLineText, isMultipleChoice, isCodeCompletion. But it must strictly be a different UI type than the step that the user started you off with. For example, if the user is sending you an isText: true question, you can't respond with an isText: true output.
         
         Return the question in the proper JSON format as guided.}
       `;
@@ -2275,7 +2337,7 @@ const Step = ({
             </div>
           )}
 
-          {step.isSingleLineText && (
+          {step.isSingleLineText && !step.canChangeWithTime && (
             <VoiceInput
               handleModalCheck={handleModalCheck}
               value={inputValue}
@@ -2292,7 +2354,7 @@ const Step = ({
               userLanguage={userLanguage}
             />
           )}
-          {step.isText && (
+          {step.isText && !step.canChangeWithTime && (
             <VoiceInput
               handleModalCheck={handleModalCheck}
               value={inputValue}
@@ -2308,7 +2370,7 @@ const Step = ({
               userLanguage={userLanguage}
             />
           )}
-          {step.isCodeCompletion && (
+          {step.isCodeCompletion && !step.canChangeWithTime && (
             <CodeCompletionQuestion
               step={step}
               question={step.question}
@@ -2319,7 +2381,7 @@ const Step = ({
               handleModalCheck={handleModalCheck}
             />
           )}
-          {step.isCode && !step.isTerminal && (
+          {step.isCode && !step.isTerminal && !step.canChangeWithTime && (
             <VoiceInput
               handleModalCheck={handleModalCheck}
               value={inputValue}
@@ -2335,7 +2397,7 @@ const Step = ({
               currentStep={currentStep}
             />
           )}
-          {step.isCode && step.isTerminal && (
+          {step.isCode && step.isTerminal && !step.canChangeWithTime && (
             <Box
               width="100%"
               justifyContent="center"
@@ -2360,7 +2422,7 @@ const Step = ({
               />
             </Box>
           )}
-          {step.isMultipleChoice && (
+          {step.isMultipleChoice && !step.canChangeWithTime && (
             <MultipleChoiceQuestion
               question={step.question}
               selectedOption={selectedOption}
@@ -2370,7 +2432,7 @@ const Step = ({
               handleModalCheck={handleModalCheck}
             />
           )}
-          {step.isMultipleAnswerChoice && (
+          {step.isMultipleAnswerChoice && !step.canChangeWithTime && (
             <MultipleAnswerQuestion
               question={step.question}
               selectedOptions={selectedOptions}
@@ -2380,7 +2442,7 @@ const Step = ({
               handleModalCheck={handleModalCheck}
             />
           )}
-          {step.isSelectOrder && (
+          {step.isSelectOrder && !step.canChangeWithTime && (
             <SelectOrderQuestion
               items={items}
               setItems={setItems}
@@ -2390,7 +2452,7 @@ const Step = ({
               handleModalCheck={handleModalCheck}
             />
           )}
-          {step.isConversationReview && (
+          {step.isConversationReview && !step.canChangeWithTime && (
             <ConversationReview
               question={step.question}
               userLanguage={userLanguage}
@@ -2502,12 +2564,45 @@ const Step = ({
                   </RiseUpAnimation>
                 </div>
               )}
+              {step.canChangeWithTime ? (
+                <>
+                  <Text>
+                    {
+                      translation[userLanguage][
+                        "uscis.website.instructions.one"
+                      ]
+                    }
+                    &nbsp;
+                    <Link
+                      as="a"
+                      href={
+                        userLanguage === "en"
+                          ? "https://www.uscis.gov/citizenship/find-study-materials-and-resources/check-for-test-updates"
+                          : "https://www.uscis.gov/es/ciudadania/encuentre-materiales-de-estudio-y-recursos/actualizaciones-al-examen-de-civismo"
+                      }
+                      target="_blank"
+                      style={{
+                        textDecoration: "underline",
+                      }}
+                    >
+                      USCIS&nbsp;
+                      {
+                        translation[userLanguage][
+                          "uscis.website.instructions.two"
+                        ]
+                      }
+                    </Link>
+                  </Text>
+                  <br />
+                </>
+              ) : null}
               <HStack spacing={4} width="100%" justifyContent={"center"}>
                 {step.question &&
                 currentStep > 0 &&
                 !isCorrect &&
                 !isSending &&
                 !(parseInt(localStorage.getItem("incorrectAttempts")) >= "5") &&
+                !step.canChangeWithTime &&
                 isTimerExpired ? (
                   <Button
                     fontSize="sm"
@@ -2540,7 +2635,7 @@ const Step = ({
                     />
                   </div>
                 ) : null}
-                {isCorrect && (
+                {(isCorrect || step.canChangeWithTime) && (
                   <>
                     <Button
                       background="white"
@@ -3156,6 +3251,9 @@ const PasscodePage = ({ isOldAccount, userLanguage }) => {
   const correctPasscode = import.meta.env.VITE_PATREON_PASSCODE;
 
   const checkPasscode = async () => {
+    console.log("just ran");
+    console.log("input...", input);
+
     if (input === correctPasscode) {
       // console.log("we did it");
       localStorage.setItem("passcode", input);
@@ -3323,14 +3421,16 @@ function App({ isShutDown }) {
 
             if (location.pathname === "/about") {
               // Do nothing if on /about
-            } else if (
-              step === "subscription" ||
-              (step > 9 &&
-                localStorage.getItem("passcode") !==
-                  import.meta.env.VITE_PATREON_PASSCODE)
-            ) {
-              navigate("/subscription");
-            } else if (step === "award") {
+            }
+            // else if (
+            //   step === "subscription" ||
+            //   (step > 9 &&
+            //     localStorage.getItem("passcode") !==
+            //       import.meta.env.VITE_PATREON_PASSCODE)
+            // ) {
+            //   navigate("/subscription");
+            // }
+            else if (step === "award") {
               navigate("/award");
             } else {
               // if (step !== 0) {
@@ -3507,6 +3607,7 @@ export const AppWrapper = () => {
   //   )
   // );
   // const isBroken = true;
+
   const [isShutDown, setIsShutDown] = useState(false);
   const [isBroken, setIsBroken] = useState(false);
 
@@ -3619,7 +3720,12 @@ export const AppWrapper = () => {
       {/* <b>Test Version 0.9.5</b> */}
 
       {/* <StreamLoader /> */}
+
       <App isShutDown={isShutDown} />
+      {/* <iframe
+        src="https://undocumented.app"
+        style={{ height: "100%", position: "fixed", top: 0 }}
+      /> */}
     </Router>
   );
 };

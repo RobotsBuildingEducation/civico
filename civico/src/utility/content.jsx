@@ -60,14 +60,15 @@ export const steps = {
       description: "Understanding constitutional amendments",
       isCodeCompletion: true,
       question: {
-        questionText: "What is an amendment?",
+        questionText:
+          "What is the primary purpose of a constitutional amendment?",
         options: [
-          "a change (to the Constitution)",
-          "a change to the Constitution",
-          "an addition (to the Constitution)",
-          "a modification to the Constitution",
+          "To change the structure of the government",
+          "To make changes to the Constitution",
+          "To create new laws",
+          "To redefine state boundaries",
         ],
-        answer: "a change (to the Constitution)",
+        answer: "To make changes to the Constitution",
       },
     },
     {
@@ -111,9 +112,9 @@ export const steps = {
       description: "Total number of amendments",
       isCodeCompletion: true,
       question: {
-        questionText: "How many amendments does the Constitution have?",
-        options: ["twenty-seven (27)", "27", "twenty seven", "27 amendments"],
-        answer: "twenty-seven (27)",
+        questionText: "How many amendments are there in the U.S. Constitution?",
+        options: ["Less than 25", "Exactly 27", "More than 30", "Exactly 21"],
+        answer: "Exactly 27",
       },
     },
     {
@@ -297,9 +298,14 @@ export const steps = {
       description: "Total U.S. Senators",
       isCodeCompletion: true,
       question: {
-        questionText: "How many U.S. Senators are there?",
-        options: ["one hundred (100)", "100", "one hundred", "hundred"],
-        answer: "one hundred (100)",
+        questionText: "How many Senators are in the U.S. Senate?",
+        options: [
+          "50, one for each state",
+          "100, two per state",
+          "435, matching House members",
+          "Unlimited, based on population",
+        ],
+        answer: "100, two per state",
       },
     },
     {
@@ -308,11 +314,12 @@ export const steps = {
       description: "Length of Senate term",
       isCodeCompletion: true,
       question: {
-        questionText: "We elect a U.S. Senator for how many years?",
-        options: ["six (6)", "6", "six years", "6 years"],
-        answer: "six (6)",
+        questionText: "What is the length of one term for a U.S. Senator?",
+        options: ["Two years", "Four years", "Six years", "Eight years"],
+        answer: "Six years",
       },
     },
+
     {
       group: "2",
       title: "State Senator",
@@ -331,14 +338,14 @@ export const steps = {
       isCodeCompletion: true,
       question: {
         questionText:
-          "The House of Representatives has how many voting members?",
+          "How many voting members are there in the U.S. House of Representatives?",
         options: [
-          "four hundred thirty-five (435)",
-          "435",
-          "four hundred thirty five",
-          "435 members",
+          "100, matching the Senate",
+          "300, proportional to population",
+          "435, as established by law",
+          "500, including non-voting members",
         ],
-        answer: "four hundred thirty-five (435)",
+        answer: "435, as established by law",
       },
     },
     {
@@ -347,11 +354,12 @@ export const steps = {
       description: "Length of Representative term",
       isCodeCompletion: true,
       question: {
-        questionText: "We elect a U.S. Representative for how many years?",
-        options: ["two (2)", "2", "two years", "2 years"],
-        answer: "two (2)",
+        questionText: "What is the term length for a U.S. Representative?",
+        options: ["Two years", "Four years", "Six years", "One year"],
+        answer: "Two years",
       },
     },
+
     {
       group: "2",
       title: "Your Representative",
@@ -406,9 +414,10 @@ export const steps = {
       description: "Length of presidential term",
       isCodeCompletion: true,
       question: {
-        questionText: "We elect a President for how many years?",
-        options: ["four (4)", "4", "four years", "4 years"],
-        answer: "four (4)",
+        questionText:
+          "What is the term length for the President of the United States?",
+        options: ["Two years", "Four years", "Six years", "Eight years"],
+        answer: "Four years",
       },
     },
     {
@@ -427,6 +436,7 @@ export const steps = {
       group: "2",
       title: "Current President",
       description: "Name of current President",
+      canChangeWithTime: true,
       isSingleLineText: true,
       question: {
         questionText:
@@ -439,6 +449,8 @@ export const steps = {
       group: "2",
       title: "Current Vice President",
       description: "Name of current Vice President",
+      canChangeWithTime: true,
+
       isSingleLineText: true,
       question: {
         questionText:
@@ -612,6 +624,8 @@ export const steps = {
       title: "Supreme Court Size",
       description: "Number of Supreme Court justices",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText: "How many justices are on the Supreme Court?",
         placeholder: "Visit uscis.gov/citizenship/testupdates...",
@@ -624,6 +638,8 @@ export const steps = {
       title: "Chief Justice",
       description: "Current Chief Justice name",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText: "Who is the Chief Justice of the United States now?",
         placeholder: "Visit uscis.gov/citizenship/testupdates...",
@@ -721,6 +737,8 @@ export const steps = {
       title: "President Party",
       description: "Current President's political party",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText: "What is the political party of the President now?",
         placeholder: "Visit uscis.gov/citizenship/testupdates...",
@@ -733,6 +751,8 @@ export const steps = {
       title: "House Speaker",
       description: "Current Speaker of the House",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText:
           "What is the name of the Speaker of the House of Representatives now?",
@@ -868,14 +888,15 @@ export const steps = {
       description: "Presidential voting age requirement",
       isCodeCompletion: true,
       question: {
-        questionText: "How old do citizens have to be to vote for President?",
+        questionText:
+          "What is the minimum age required to vote for the President of the United States?",
         options: [
-          "eighteen (18) and older",
-          "18 and older",
-          "eighteen and above",
-          "18 years or more",
+          "16 years old",
+          "18 years old",
+          "21 years old",
+          "25 years old",
         ],
-        answer: "eighteen (18) and older",
+        answer: "18 years old",
       },
     },
     {
@@ -919,8 +940,8 @@ export const steps = {
       isCodeCompletion: true,
       question: {
         questionText:
-          "When is the last day you can send in federal income tax forms?",
-        options: ["April 15", "April 15th", "15th of April", "April fifteenth"],
+          "What is the deadline for filing federal income tax forms in the United States?",
+        options: ["March 15", "April 15", "May 15", "June 15"],
         answer: "April 15",
       },
     },
@@ -1040,16 +1061,18 @@ export const steps = {
       description: "When Declaration was adopted",
       isCodeCompletion: true,
       question: {
-        questionText: "When was the Declaration of Independence adopted?",
+        questionText:
+          "On what date was the Declaration of Independence adopted?",
         options: [
+          "June 4, 1776",
           "July 4, 1776",
-          "July 4th, 1776",
-          "July Fourth, 1776",
-          "4th of July, 1776",
+          "July 14, 1776",
+          "August 4, 1776",
         ],
         answer: "July 4, 1776",
       },
     },
+
     {
       group: "4",
       title: "Original States",
@@ -1114,11 +1137,12 @@ export const steps = {
       description: "When Constitution was written",
       isCodeCompletion: true,
       question: {
-        questionText: "When was the Constitution written?",
-        options: ["1787", "seventeen eighty-seven", "in 1787", "year 1787"],
+        questionText: "In what year was the U.S. Constitution written?",
+        options: ["1776", "1787", "1791", "1800"],
         answer: "1787",
       },
     },
+
     {
       group: "4",
       title: "Federalist Papers",
@@ -1440,21 +1464,22 @@ export const steps = {
     },
     {
       group: "6",
-      title: "September 11",
-      description: "Major event on 9/11/2001",
+      title: "11 de Septiembre",
+      description: "Evento importante el 9/11/2001",
       isCodeCompletion: true,
       question: {
         questionText:
-          "What major event happened on September 11, 2001, in the United States?",
+          "¿Qué evento significativo ocurrió en los Estados Unidos el 11 de septiembre de 2001?",
         options: [
-          "Terrorists attacked the United States.",
-          "Terrorists attacked the U.S.",
-          "Terror attacks occurred.",
-          "The U.S. was attacked by terrorists.",
+          "Ataques terroristas a los Estados Unidos",
+          "Desastre natural en Nueva York",
+          "Crisis económica",
+          "Ataque a una base militar",
         ],
-        answer: "Terrorists attacked the United States.",
+        answer: "Ataques terroristas a los Estados Unidos",
       },
     },
+
     {
       group: "6",
       title: "Native Tribes",
@@ -1694,11 +1719,13 @@ export const steps = {
       description: "When Independence Day is celebrated",
       isCodeCompletion: true,
       question: {
-        questionText: "When do we celebrate Independence Day?",
-        options: ["July 4", "July 4th", "July Fourth", "4th of July"],
+        questionText:
+          "On what date is Independence Day celebrated in the United States?",
+        options: ["June 4", "July 4", "August 4", "July 14"],
         answer: "July 4",
       },
     },
+
     {
       group: "9",
       title: "National Holidays",
@@ -1787,17 +1814,18 @@ export const steps = {
     {
       group: "1",
       title: "Definición de Enmienda",
-      description: "Entendiendo las enmiendas constitucionales",
+      description: "Comprender las enmiendas constitucionales",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Qué es una enmienda?",
+        questionText:
+          "¿Cuál es el propósito principal de una enmienda constitucional?",
         options: [
-          "un cambio (a la Constitución)",
-          "un cambio a la Constitución",
-          "una adición (a la Constitución)",
-          "una modificación a la Constitución",
+          "Cambiar la estructura del gobierno",
+          "Realizar cambios en la Constitución",
+          "Crear nuevas leyes",
+          "Redefinir los límites estatales",
         ],
-        answer: "un cambio (a la Constitución)",
+        answer: "Realizar cambios en la Constitución",
       },
     },
     {
@@ -1837,13 +1865,19 @@ export const steps = {
     },
     {
       group: "1",
-      title: "Enmiendas a la Constitución",
+      title: "Enmiendas de la Constitución",
       description: "Número total de enmiendas",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Cuántas enmiendas tiene la Constitución?",
-        options: ["veintisiete (27)", "27", "veintisiete", "27 enmiendas"],
-        answer: "veintisiete (27)",
+        questionText:
+          "¿Cuántas enmiendas tiene la Constitución de los Estados Unidos?",
+        options: [
+          "Menos de 25",
+          "Exactamente 27",
+          "Más de 30",
+          "Exactamente 21",
+        ],
+        answer: "Exactamente 27",
       },
     },
     {
@@ -2031,23 +2065,30 @@ export const steps = {
     {
       group: "2",
       title: "Número de Senadores",
-      description: "Total de Senadores de EE.UU.",
+      description: "Total de Senadores de los EE. UU.",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Cuántos senadores de EE.UU. hay?",
-        options: ["cien (100)", "100", "cien", "ciento"],
-        answer: "cien (100)",
+        questionText:
+          "¿Cuántos senadores hay en el Senado de los Estados Unidos?",
+        options: [
+          "50, uno por cada estado",
+          "100, dos por estado",
+          "435, igual que los miembros de la Cámara",
+          "Ilimitado, basado en la población",
+        ],
+        answer: "100, dos por estado",
       },
     },
     {
       group: "2",
-      title: "Duración del Mandato del Senador",
-      description: "Duración del mandato del Senado",
+      title: "Término del Senador",
+      description: "Duración del mandato en el Senado",
       isCodeCompletion: true,
       question: {
-        questionText: "Elegimos a un senador de EE.UU. por cuántos años?",
-        options: ["seis (6)", "6", "seis años", "6 años"],
-        answer: "seis (6)",
+        questionText:
+          "¿Cuál es la duración de un mandato de un senador de los EE. UU.?",
+        options: ["Dos años", "Cuatro años", "Seis años", "Ocho años"],
+        answer: "Seis años",
       },
     },
     {
@@ -2069,27 +2110,29 @@ export const steps = {
       isCodeCompletion: true,
       question: {
         questionText:
-          "La Cámara de Representantes tiene cuántos miembros con derecho a voto?",
+          "¿Cuántos miembros con derecho a voto hay en la Cámara de Representantes de los Estados Unidos?",
         options: [
-          "cuatrocientos treinta y cinco (435)",
-          "435",
-          "cuatrocientos treinta y cinco",
-          "435 miembros",
+          "100, igual que el Senado",
+          "300, proporcional a la población",
+          "435, según lo establecido por la ley",
+          "500, incluidos los miembros sin derecho a voto",
         ],
-        answer: "cuatrocientos treinta y cinco (435)",
+        answer: "435, según lo establecido por la ley",
       },
     },
     {
       group: "2",
-      title: "Duración del Mandato del Representante",
-      description: "Duración del mandato de un Representante",
+      title: "Término del Representante",
+      description: "Duración del mandato del Representante",
       isCodeCompletion: true,
       question: {
-        questionText: "Elegimos a un Representante de EE.UU. por cuántos años?",
-        options: ["dos (2)", "2", "dos años", "2 años"],
-        answer: "dos (2)",
+        questionText:
+          "¿Cuál es la duración del mandato de un Representante de los EE. UU.?",
+        options: ["Dos años", "Cuatro años", "Seis años", "Un año"],
+        answer: "Dos años",
       },
     },
+
     {
       group: "2",
       title: "Su Representante",
@@ -2141,15 +2184,17 @@ export const steps = {
     },
     {
       group: "2",
-      title: "Duración del Mandato Presidencial",
+      title: "Término Presidencial",
       description: "Duración del mandato presidencial",
       isCodeCompletion: true,
       question: {
-        questionText: "Elegimos a un Presidente por cuántos años?",
-        options: ["cuatro (4)", "4", "cuatro años", "4 años"],
-        answer: "cuatro (4)",
+        questionText:
+          "¿Cuál es la duración del mandato del Presidente de los Estados Unidos?",
+        options: ["Dos años", "Cuatro años", "Seis años", "Ocho años"],
+        answer: "Cuatro años",
       },
     },
+
     {
       group: "2",
       title: "Mes de Elección Presidencial",
@@ -2166,6 +2211,8 @@ export const steps = {
       title: "Presidente Actual",
       description: "Nombre del Presidente actual",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText:
           "¿Cuál es el nombre del Presidente de los Estados Unidos ahora?",
@@ -2178,6 +2225,8 @@ export const steps = {
       title: "Vicepresidente Actual",
       description: "Nombre del Vicepresidente actual",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText:
           "¿Cuál es el nombre del Vicepresidente de los Estados Unidos ahora?",
@@ -2352,6 +2401,8 @@ export const steps = {
       title: "Tamaño de la Corte Suprema",
       description: "Número de jueces de la Corte Suprema",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText: "¿Cuántos jueces hay en la Corte Suprema?",
         placeholder: "Visite uscis.gov/citizenship/testupdates...",
@@ -2364,6 +2415,8 @@ export const steps = {
       title: "Presidente del Tribunal Supremo",
       description: "Nombre del actual Presidente del Tribunal Supremo",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText:
           "¿Quién es el Presidente del Tribunal Supremo de los Estados Unidos ahora?",
@@ -2462,6 +2515,8 @@ export const steps = {
       title: "Partido del Presidente",
       description: "Partido político del Presidente actual",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText: "¿Cuál es el partido político del Presidente ahora?",
         placeholder: "Visite uscis.gov/citizenship/testupdates...",
@@ -2474,6 +2529,8 @@ export const steps = {
       title: "Presidente de la Cámara",
       description: "Actual Presidente de la Cámara de Representantes",
       isSingleLineText: true,
+      canChangeWithTime: true,
+
       question: {
         questionText:
           "¿Cuál es el nombre del Presidente de la Cámara de Representantes ahora?",
@@ -2619,14 +2676,9 @@ export const steps = {
       isCodeCompletion: true,
       question: {
         questionText:
-          "¿Qué edad deben tener los ciudadanos para votar por el Presidente?",
-        options: [
-          "dieciocho (18) años en adelante",
-          "18 años en adelante",
-          "dieciocho años o más",
-          "18 años o más",
-        ],
-        answer: "dieciocho (18) años en adelante",
+          "¿Cuál es la edad mínima requerida para votar por el Presidente de los Estados Unidos?",
+        options: ["16 años", "18 años", "21 años", "25 años"],
+        answer: "18 años",
       },
     },
     {
@@ -2666,21 +2718,16 @@ export const steps = {
     {
       group: "3",
       title: "Fecha Límite de Impuestos",
-      description:
-        "Fecha límite para declarar impuestos federales sobre la renta",
+      description: "Fecha límite para el impuesto federal sobre ingresos",
       isCodeCompletion: true,
       question: {
         questionText:
-          "¿Cuándo es el último día que puedes enviar los formularios federales de impuestos sobre la renta?",
-        options: [
-          "el 15 de abril",
-          "15 de abril",
-          "el 15 de abril",
-          "quince de abril",
-        ],
-        answer: "el 15 de abril",
+          "¿Cuál es la fecha límite para presentar los formularios del impuesto federal sobre ingresos en los Estados Unidos?",
+        options: ["15 de marzo", "15 de abril", "15 de mayo", "15 de junio"],
+        answer: "15 de abril",
       },
     },
+
     {
       group: "3",
       title: "Servicio Selectivo",
@@ -2799,16 +2846,18 @@ export const steps = {
       description: "Cuándo se adoptó la Declaración",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Cuándo se adoptó la Declaración de Independencia?",
+        questionText:
+          "¿En qué fecha se adoptó la Declaración de Independencia?",
         options: [
-          "el 4 de julio de 1776",
+          "4 de junio de 1776",
           "4 de julio de 1776",
-          "Cuatro de julio de 1776",
-          "4 de julio de 1776",
+          "14 de julio de 1776",
+          "4 de agosto de 1776",
         ],
-        answer: "el 4 de julio de 1776",
+        answer: "4 de julio de 1776",
       },
     },
+
     {
       group: "4",
       title: "Estados Originales",
@@ -2873,16 +2922,13 @@ export const steps = {
       description: "Cuándo se escribió la Constitución",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Cuándo se escribió la Constitución?",
-        options: [
-          "1787",
-          "mil setecientos ochenta y siete",
-          "en 1787",
-          "año 1787",
-        ],
+        questionText:
+          "¿En qué año se escribió la Constitución de los Estados Unidos?",
+        options: ["1776", "1787", "1791", "1800"],
         answer: "1787",
       },
     },
+
     {
       group: "4",
       title: "Los Federalistas",
@@ -3449,16 +3495,13 @@ export const steps = {
       description: "Cuándo se celebra el Día de la Independencia",
       isCodeCompletion: true,
       question: {
-        questionText: "¿Cuándo celebramos el Día de la Independencia?",
-        options: [
-          "el 4 de julio",
-          "4 de julio",
-          "Cuatro de julio",
-          "4 de julio",
-        ],
-        answer: "el 4 de julio",
+        questionText:
+          "¿En qué fecha se celebra el Día de la Independencia en los Estados Unidos?",
+        options: ["4 de junio", "4 de julio", "4 de agosto", "14 de julio"],
+        answer: "4 de julio",
       },
     },
+
     {
       group: "9",
       title: "Días Festivos Nacionales",
@@ -3496,6 +3539,143 @@ export const steps = {
 };
 
 export const generatedSteps = [];
+
+export const tutorialDemo = {
+  en: [
+    {
+      group: "tutorial",
+      title: "Supreme Law",
+      description: "Understanding the Constitution as supreme law",
+      isMultipleChoice: true,
+      question: {
+        questionText: "What is the supreme law of the land?",
+        options: [
+          "the Constitution",
+          "the Declaration of Independence",
+          "the Bill of Rights",
+          "Federal Laws",
+        ],
+        answer: "the Constitution",
+      },
+    },
+    {
+      group: "tutorial",
+      title: "Constitution Purpose",
+      description: "Understanding the Constitution's functions",
+      isMultipleAnswerChoice: true,
+      question: {
+        questionText: "What does the Constitution do?",
+        options: [
+          "sets up the government",
+          "defines the government",
+          "protects basic rights of Americans",
+          "establishes taxes",
+        ],
+        answer: [
+          "sets up the government",
+          "defines the government",
+          "protects basic rights of Americans",
+        ],
+      },
+    },
+    {
+      group: "tutorial",
+      title: "First Three Words",
+      description: "Opening of the Constitution",
+      isSingleLineText: true,
+      question: {
+        questionText:
+          "The idea of self-government is in the first three words of the Constitution. What are these words?",
+        placeholder: "Enter the three words...",
+        answer: "We the People",
+      },
+    },
+    {
+      group: "tutorial",
+      title: "Amendment Definition",
+      description: "Understanding constitutional amendments",
+      isCodeCompletion: true,
+      question: {
+        questionText:
+          "What is the primary purpose of a constitutional amendment?",
+        options: [
+          "To change the structure of the government",
+          "To make changes to the Constitution",
+          "To create new laws",
+          "To redefine state boundaries",
+        ],
+        answer: "To make changes to the Constitution",
+      },
+    },
+  ],
+  es: [
+    {
+      group: "tutorial",
+      title: "Ley Suprema",
+      description: "Entendiendo la Constitución como ley suprema",
+      isMultipleChoice: true,
+      question: {
+        questionText: "¿Cuál es la ley suprema del país?",
+        options: [
+          "la Constitución",
+          "la Declaración de Independencia",
+          "la Carta de Derechos",
+          "Leyes Federales",
+        ],
+        answer: "la Constitución",
+      },
+    },
+    {
+      group: "tutorial",
+      title: "Propósito de la Constitución",
+      description: "Entendiendo las funciones de la Constitución",
+      isMultipleAnswerChoice: true,
+      question: {
+        questionText: "¿Qué hace la Constitución?",
+        options: [
+          "establece el gobierno",
+          "define el gobierno",
+          "protege los derechos básicos de los estadounidenses",
+          "establece impuestos",
+        ],
+        answer: [
+          "establece el gobierno",
+          "define el gobierno",
+          "protege los derechos básicos de los estadounidenses",
+        ],
+      },
+    },
+    {
+      group: "tutorial",
+      title: "Primeras Tres Palabras",
+      description: "Apertura de la Constitución",
+      isSingleLineText: true,
+      question: {
+        questionText:
+          "La idea de autogobierno está en las primeras tres palabras de la Constitución. ¿Cuáles son esas palabras?",
+        placeholder: "Escribe las tres palabras...",
+        answer: "Nosotros el Pueblo",
+      },
+    },
+    {
+      group: "tutorial",
+      title: "Definición de Enmienda",
+      description: "Entendiendo las enmiendas constitucionales",
+      isCodeCompletion: true,
+      question: {
+        questionText:
+          "¿Cuál es el propósito principal de una enmienda constitucional?",
+        options: [
+          "Cambiar la estructura del gobierno",
+          "Hacer cambios en la Constitución",
+          "Crear nuevas leyes",
+          "Redefinir los límites estatales",
+        ],
+        answer: "Hacer cambios en la Constitución",
+      },
+    },
+  ],
+};
 
 export const tutorial_interface = [
   {

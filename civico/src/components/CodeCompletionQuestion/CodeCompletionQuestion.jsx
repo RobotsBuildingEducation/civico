@@ -6,6 +6,8 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 import { translation } from "../../utility/translation";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import Markdown from "react-markdown";
 
 const CodeCompletionQuestion = ({
   step,
@@ -149,7 +151,10 @@ const CodeCompletionQuestion = ({
           }}
         >
           {/* Render cleaned-up and highlighted code block */}
-          <Editor
+          <pre style={{ whiteSpace: "pre-wrap" }}>
+            <Markdown components={ChakraUIRenderer()} children={option} />
+          </pre>
+          {/* <Editor
             value={option}
             onValueChange={() => {}} // Disable editing
             highlight={(code) => highlight(code, languages.js)}
@@ -164,7 +169,7 @@ const CodeCompletionQuestion = ({
               pointerEvents: "none", // Prevent editor from blocking clicks
             }}
             disabled
-          />
+          /> */}
         </Box>
       ))}
     </VStack>

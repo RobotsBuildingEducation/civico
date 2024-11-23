@@ -3,6 +3,8 @@ import { DataTags } from "../elements/DataTag";
 
 export let translation = {
   en: {
+    "uscis.website.instructions.one": `This answer changes over time. Visit`,
+    "uscis.website.instructions.two": `to learn the current answer.`,
     "chatcom.instructions.1":
       "Generate a useful, friendly and professional lecture with javascript coding examples in",
     "chatcom.instructions.2": "for beginners on the following question/answer:",
@@ -46,7 +48,7 @@ export let translation = {
     "nostrContent.onboardedProfileAbout":
       "A student onboarded with Robots Building Education",
     "nostrContent.introductionPost":
-      "gm nostr! I'm here from Tiktok by creating an account through https://civico.app so I can learn how to code with AI. Looking forward to meeting folks in the cypherpunk community! #introductions #LearnWithNostr",
+      "gm nostr! I'm here from Tiktok after creating an account with https://civico.app where I can learn about civics, citizenship and legal literacy with AI. Looking forward to meeting folks in the cypherpunk community! #introductions #LearnWithNostr",
 
     "createAccount.successMessage": "That's it!",
     "createAccount.awareness":
@@ -568,6 +570,10 @@ export let translation = {
     analyzer: "Analyzing your progress & creating new question card",
   },
   es: {
+    "uscis.website.instructions.one":
+      "Esta respuesta cambia con el tiempo. Visite",
+    "uscis.website.instructions.two": "para conocer la respuesta actual.",
+
     "toast.title.chatDataCopied": "Abriendo ChatGPT...",
     "chatcom.instructions.1":
       "Genera una conferencia útil, amigable y profesional con ejemplos de código en JavaScript en",
@@ -662,7 +668,7 @@ export let translation = {
     "nostrContent.onboardedProfileAbout":
       "Un estudiante se unió con Robots Building Education",
     "nostrContent.introductionPost":
-      "¡Buenos días, Nostr! Estoy aquí desde Tiktok, creando una cuenta a través de https://civico.app para aprender a programar con IA. ¡Espero conocer a personas de la comunidad cypherpunk! #introductions #LearnWithNostr",
+      "gm nostr! Vengo de TikTok después de crear una cuenta en https://civico.app, donde puedo aprender sobre civismo, ciudadanía y alfabetización legal con IA. ¡Espero conocer a personas de la comunidad cypherpunk! #introductions #LearnWithNostr",
     "createAccount.isCreating": "Creando cuenta... 1/3",
     "createAccount.isCreatingProfile": "Creando perfil... 2/3",
     // "createAccount.isCreatingProfilePicture": "Creando foto de perfil... 3/4",
