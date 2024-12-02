@@ -52,7 +52,7 @@ export let translation = {
 
     "createAccount.successMessage": "That's it!",
     "createAccount.awareness":
-      "Your account now works on a number of decentralized apps. Use your key to sign into apps like ",
+      "Your account now works on a number of decentralized apps. Use your key to sign into apps the same way you use a mailbox!",
     "createAccount.roxLink": "Rox the learning assistant",
     or: "or",
     "createAccount.primalLink": "with Primal, the social wallet",
@@ -84,7 +84,7 @@ export let translation = {
     "settings.button.civilRightsAI": "Civil Rights Assistant",
 
     "settings.button.yourProfile": "Your Profile",
-    "settings.button.nostrApps": "App Collection",
+    "settings.button.nostrApps": "App Store",
     "settings.button.patreon": "Subscription",
     "settings.button.studyGuide": "Study Guide",
     "settings.button.feedback": "Feedback",
@@ -506,11 +506,8 @@ export let translation = {
         you did.
         <br />
         <br />
-        This platform comes with a tutor called Rox that will provide
-        introductory video lectures that are handcrafted and animated to arm you
-        with knowledge before or after practicing the questions involved in each
-        chapter. Each lecture starts by working backwards, so that you can get
-        used to appreciating challenge-oriented learning.
+        This platform comes with an assistant that will help you learn more
+        about civil rights, law enforcement, college education and employment.
       </div>
     ),
     "passcode.instructions": (
@@ -654,11 +651,9 @@ export let translation = {
         difícil, ¡trabájalo! Estarás agradecido de haberlo hecho.
         <br />
         <br />
-        Esta plataforma viene con una tutora llamada Rox que te proporcionará
-        videoconferencias introductorias, hechas a mano y animadas, para
-        equiparte con conocimientos antes o después de practicar las preguntas
-        de cada capítulo. Cada conferencia comienza trabajando hacia atrás, para
-        que te acostumbres a apreciar el aprendizaje orientado a los desafíos.
+        Esta plataforma viene con un asistente que te ayudará a aprender más
+        sobre los derechos civiles, las fuerzas del orden, la educación
+        universitaria y el empleo.
       </div>
     ),
     advice: "Mi Consejo",
@@ -703,7 +698,7 @@ export let translation = {
     "createAccount.isLoading": "Creando...",
     "createAccount.successMessage": "¡Eso es todo!",
     "createAccount.awareness":
-      "Tu cuenta ahora funciona en varias aplicaciones descentralizadas. Usa tu clave para iniciar sesión en aplicaciones como ",
+      "Tu cuenta ahora funciona en varias aplicaciones descentralizadas. ¡Usa tu clave para iniciar sesión en aplicaciones de la misma manera que utilizas un buzón de correo!",
     "createAccount.roxLink": "ROX, el asistente de aprendizaje",
     or: "o",
     "createAccount.primalLink": "Primal, la billetera social",
@@ -1119,7 +1114,7 @@ export let translation = {
     "settings.button.yourTutor": "Tu Tutor",
     "settings.button.civilRightsAI": "IA de Derechos Civiles",
     "settings.button.yourProfile": "Tu Perfil",
-    "settings.button.nostrApps": "Colección de Apps",
+    "settings.button.nostrApps": "App Store",
     "link.connectWithMe": "¡Conéctate conmigo!",
     "Civico Tutorial": "Tutorial de Civico",
     "Basics of Coding": "Fundamentos de la Programación",

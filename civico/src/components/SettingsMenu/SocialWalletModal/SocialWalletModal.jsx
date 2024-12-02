@@ -111,7 +111,7 @@ const SocialWalletModal = ({ isOpen, onClose, userLanguage }) => {
             userLanguage={userLanguage}
           />
           <ActionButton
-            href="https://nostrapps.com"
+            href="https://otherstuff.app"
             text={translation[userLanguage]["settings.button.nostrApps"]}
             userLanguage={userLanguage}
           />

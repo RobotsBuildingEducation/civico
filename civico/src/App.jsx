@@ -3120,7 +3120,7 @@ const Home = ({
               </Text>{" "}
               <Text fontSize="sm" maxWidth={"300px"}>
                 {translation[userLanguage]["createAccount.awareness"]}
-                {isCheckboxChecked ? (
+                {/* {isCheckboxChecked ? (
                   <a
                     target="_blank"
                     href="https://embedded-rox.app"
@@ -3155,7 +3155,7 @@ const Home = ({
                 ) : (
                   translation[userLanguage]["createAccount.primalLink"]
                 )}
-                .
+                . */}
               </Text>
               <Accordion allowToggle>
                 <AccordionItem>
