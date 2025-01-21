@@ -97,6 +97,8 @@ import {
 } from "react-icons/ri";
 import { TbRobot } from "react-icons/tb";
 
+import { FaHeartCircleBolt } from "react-icons/fa6";
+
 import MultipleChoiceQuestion from "./components/MultipleChoice/MultipleChoice";
 import SelectOrderQuestion from "./components/SelectOrder/SelectOrder";
 
@@ -129,6 +131,9 @@ import CountdownTimer from "./elements/CountdownTimer";
 import { PasscodeModal } from "./components/PasscodeModal/PasscodeModal";
 import { usePasscodeModalStore } from "./usePasscodeModalStore";
 import { StreamLoader } from "./elements/StreamLoader";
+import { useNostrWalletStore } from "./hooks/useNostrWalletStore";
+import SocialFeedModal from "./components/SocialFeedModal/SocialFeedModal";
+import { useSimpleGeminiChat } from "./hooks/useGeminiChat";
 
 // logEvent(analytics, "page_view", {
 //   page_location: "https://embedded-rox.app/",
@@ -313,9 +318,8 @@ export const VoiceInput = ({
     resetMessages: resetEducationalMessages,
     messages: educationalMessages,
     submitPrompt: submitEducationalPrompt,
-  } = useChatCompletion({
-    response_format: { type: "json_object" },
-  });
+    loading,
+  } = useSimpleGeminiChat();
 
   const [educationalContent, setEducationalContent] = useState([]);
 
@@ -592,54 +596,36 @@ export const VoiceInput = ({
   // New function for handling the "Learn" button click
   const handleLearnClick = async () => {
     // Retrieve the current count from localStorage
-    let lrnctrl = parseInt(localStorage.getItem("lrnctrl") || "0", 10);
+    // let lrnctrl = parseInt(localStorage.getItem("lrnctrl") || "0", 10);
 
-    // Check if the user has already generated 3 questions
-    if (lrnctrl >= 3) {
-      // Silently skip the function
-      return;
-    }
+    // // Check if the user has already generated 3 questions
+    // if (lrnctrl >= 3) {
+    //   // Silently skip the function
+    //   return;
+    // }
 
-    // Increment the counter and store it back in localStorage
-    lrnctrl += 1;
-    localStorage.setItem("lrnctrl", lrnctrl);
+    // // Increment the counter and store it back in localStorage
+    // lrnctrl += 1;
+    // localStorage.setItem("lrnctrl", lrnctrl);
     onOpen();
 
     if (!step?.isConversationReview) {
-      await submitEducationalPrompt(
-        [
-          {
-            content: `Generate educational material about ${JSON.stringify(
-              step
-            )} with code examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning. The JSON format should be { output: [{ code: "code_example", explanation: "explanation" }] }. Additionally the code should consider line breaks, whitespace and formatting in the JSON because it will be formatted and rendered after completion. Lastly the user is speaking in ${
-              userLanguage === "en" ? "english" : "spanish"
-            }`,
-            role: "user",
-          },
-        ],
-        false,
-        false,
-        false
+      submitEducationalPrompt(
+        `Generate educational civics material about ${JSON.stringify(
+          step
+        )} with examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning through the naturalization process for immigrants. Additionally the example should consider line breaks with a maximum print of 80 and formatting because it will be formatted after completion. Lastly the user is speaking in ${
+          userLanguage === "en" ? "english" : "spanish"
+        }`
       );
     } else {
       const relevantSteps = getObjectsByGroup(step?.group, steps[userLanguage]);
 
-      await submitEducationalPrompt(
-        [
-          {
-            content: `Generate educational material about ${JSON.stringify(
-              relevantSteps
-            )} with code examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning. The JSON format should be { "input": "${JSON.stringify(
-              step
-            )}", output: [{ "code": "code_example", "explanation": "explanation" }] }. Additionally the code should consider line breaks and formatting because it will be formatted after completion. Lastly the user is speaking in ${
-              userLanguage === "en" ? "english" : "spanish"
-            }`,
-            role: "user",
-          },
-        ],
-        false,
-        false,
-        false
+      submitEducationalPrompt(
+        `Generate educational civics material about ${JSON.stringify(
+          step
+        )} with examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning through the naturalization process for immigrants. Additionally the example should consider line breaks with a maximum print of 80 and formatting because it will be formatted after completion. Lastly the user is speaking in ${
+          userLanguage === "en" ? "english" : "spanish"
+        }`
       );
     }
   };
@@ -653,36 +639,36 @@ export const VoiceInput = ({
     }
   }, [value]); // Re-run effect every time the value changes
 
-  useEffect(() => {
-    if (educationalMessages?.length > 0) {
-      try {
-        const lastMessage = educationalMessages[educationalMessages.length - 1];
-        const isLastMessage =
-          lastMessage.meta.chunks[lastMessage.meta.chunks.length - 1]?.final;
+  // useEffect(() => {
+  //   if (educationalMessages?.length > 0) {
+  //     try {
+  //       const lastMessage = educationalMessages[educationalMessages.length - 1];
+  //       const isLastMessage =
+  //         lastMessage.meta.chunks[lastMessage.meta.chunks.length - 1]?.final;
 
-        if (isLastMessage) {
-          const jsonResponse = JSON.parse(lastMessage.content);
-          if (Array.isArray(jsonResponse.output)) {
-            setEducationalContent(jsonResponse.output);
-          } else {
-            setEducationalContent([]);
-          }
-        } else {
-          setEducationalContent([]);
-        }
-      } catch (error) {
-        resetEducationalMessages();
-        onClose();
+  //       if (isLastMessage) {
+  //         const jsonResponse = JSON.parse(lastMessage.content);
+  //         if (Array.isArray(jsonResponse.output)) {
+  //           setEducationalContent(jsonResponse.output);
+  //         } else {
+  //           setEducationalContent([]);
+  //         }
+  //       } else {
+  //         setEducationalContent([]);
+  //       }
+  //     } catch (error) {
+  //       resetEducationalMessages();
+  //       onClose();
 
-        showAlert("warning", translation[userLanguage]["ai.error"]);
-        const delay = (ms) =>
-          new Promise((resolve) => setTimeout(resolve, 4000));
-        delay().then(() => {
-          hideAlert();
-        });
-      }
-    }
-  }, [educationalMessages]);
+  //       showAlert("warning", translation[userLanguage]["ai.error"]);
+  //       const delay = (ms) =>
+  //         new Promise((resolve) => setTimeout(resolve, 4000));
+  //       delay().then(() => {
+  //         hideAlert();
+  //       });
+  //     }
+  //   }
+  // }, [educationalMessages]);
 
   const textareaRef = useRef(null);
 
@@ -1311,7 +1297,13 @@ const Step = ({
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [interval, setInterval] = useState(0);
-  const { cashTap, loadWallet } = useCashuStore();
+  const { sendOneSatToNpub, initWalletService, init } = useNostrWalletStore(
+    (state) => ({
+      sendOneSatToNpub: state.sendOneSatToNpub, // renamed from cashTap
+      initWalletService: state.initWalletService, // renamed from loadWallet
+      init: state.init,
+    })
+  );
   const [grade, setGrade] = useState("");
   const [isTimerExpired, setIsTimerExpired] = useState(true);
 
@@ -1340,6 +1332,12 @@ const Step = ({
     onOpen: onAwardModalOpen,
     onClose: onAwardModalClose,
   } = useDisclosure();
+
+  const {
+    isOpen: isSocialFeedModalOpen,
+    onOpen: onSocialFeedModalOpen,
+    onClose: onSocialFeedModalClose,
+  } = useDisclosure();
   const {
     resetMessages: resetNewQuestionMessages,
     messages: newQuestionMessages,
@@ -1358,7 +1356,9 @@ const Step = ({
     // const stepContent = steps[userLanguage][currentStep];
     // setStep(stepContent);
     const fetchUserData = async () => {
-      loadWallet();
+      // loadWallet();
+      await init();
+      await initWalletService();
       const userId = localStorage.getItem("local_npub");
       const userData = await getUserData(userId);
 
@@ -1420,8 +1420,18 @@ const Step = ({
   useEffect(() => {
     if (isCorrect) {
       localStorage.setItem("incorrectAttempts", 0);
-      cashTap();
+      // cashTap();
 
+      let getRecipient = async () => {
+        const userData = await getUserData(localStorage.getItem("local_npub"));
+        if (userData?.identity) {
+          console.log("we have the recipient", userData?.identity);
+          sendOneSatToNpub(userData?.identity);
+        }
+        return userData?.identity || "";
+      };
+
+      getRecipient();
       postNostrContent(
         `${translation[userLanguage]["nostrContent.answeredQuestion.1"]} ${currentStep} ${translation[userLanguage]["nostrContent.answeredQuestion.2"]} ${grade}% ${translation[userLanguage]["nostrContent.answeredQuestion.3"]} https://civico.app \n\n${step.question?.questionText} #LearnWithNostr`
       );
@@ -1807,9 +1817,8 @@ const Step = ({
     resetMessages: resetEducationalMessages,
     messages: educationalMessages,
     submitPrompt: submitEducationalPrompt,
-  } = useChatCompletion({
-    response_format: { type: "json_object" },
-  });
+    loading,
+  } = useSimpleGeminiChat();
 
   const [educationalContent, setEducationalContent] = useState([]);
 
@@ -1818,68 +1827,58 @@ const Step = ({
   // New function for handling the "Learn" button click
   const handleLearnClick = async () => {
     // Retrieve the current count from localStorage
-    let lrnctrl = parseInt(localStorage.getItem("lrnctrl") || "0", 10);
+    // let lrnctrl = parseInt(localStorage.getItem("lrnctrl") || "0", 10);
 
-    // Check if the user has already generated 3 questions
-    if (lrnctrl >= 3) {
-      // Silently skip the function
-      return;
-    }
+    // // Check if the user has already generated 3 questions
+    // if (lrnctrl >= 3) {
+    //   // Silently skip the function
+    //   return;
+    // }
 
-    // Increment the counter and store it back in localStorage
-    lrnctrl += 1;
-    localStorage.setItem("lrnctrl", lrnctrl);
+    // // Increment the counter and store it back in localStorage
+    // lrnctrl += 1;
+    // localStorage.setItem("lrnctrl", lrnctrl);
     onOpen();
-    await submitEducationalPrompt(
-      [
-        {
-          content: `Generate educational civics material about ${JSON.stringify(
-            step
-          )} with examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning through the naturalization process for immigrants. The JSON format should be { "input": "${JSON.stringify(
-            step
-          )}", output: [{ "example": "example", "explanation": "explanation" }] }. Additionally the example should consider line breaks and formatting because it will be formatted after completion. Lastly the user is speaking in ${
-            userLanguage === "en" ? "english" : "spanish"
-          }`,
-          role: "user",
-        },
-      ],
-      false,
-      false,
-      true
+    submitEducationalPrompt(
+      `Generate educational civics material about ${JSON.stringify(
+        step
+      )} with examples and explanations. Make it enriching and create a useful flow where the ideas build off of each other to encourage challenge and learning through the naturalization process for immigrants. Additionally the example should consider line breaks with a maximum print of 80 and formatting because it will be formatted after completion. Lastly the user is speaking in ${
+        userLanguage === "en" ? "english" : "spanish"
+      }`
     );
   };
 
-  useEffect(() => {
-    if (educationalMessages?.length > 0) {
-      try {
-        const lastMessage = educationalMessages[educationalMessages.length - 1];
-        const isLastMessage =
-          lastMessage.meta.chunks[lastMessage.meta.chunks.length - 1]?.final;
+  // useEffect(() => {
+  //   if (educationalMessages?.length > 0) {
+  //     try {
+  //       const lastMessage = educationalMessages[educationalMessages.length - 1];
+  //       const isLastMessage =
+  //         lastMessage.meta.chunks[lastMessage.meta.chunks.length - 1]?.final;
 
-        if (!lastMessage.meta.loading) {
-          // if (isLastMessage) {
-          const jsonResponse = JSON.parse(lastMessage.content);
-          if (Array.isArray(jsonResponse.output)) {
-            setEducationalContent(jsonResponse.output);
-          } else {
-            setEducationalContent([]);
-          }
-        } else {
-          setEducationalContent([]);
-        }
-      } catch (error) {
-        resetEducationalMessages();
-        onClose();
+  //       if (!lastMessage.meta.loading) {
+  //         // if (isLastMessage) {
+  //         const jsonResponse = JSON.parse(lastMessage.content);
+  //         if (Array.isArray(jsonResponse.output)) {
+  //           setEducationalContent(jsonResponse.output);
+  //         } else {
+  //           setEducationalContent([]);
+  //         }
+  //       } else {
+  //         setEducationalContent([]);
+  //       }
+  //     } catch (error) {
+  //       resetEducationalMessages();
+  //       onClose();
 
-        showAlert("warning", translation[userLanguage]["ai.error"]);
-        const delay = (ms) =>
-          new Promise((resolve) => setTimeout(resolve, 4000));
-        delay().then(() => {
-          hideAlert();
-        });
-      }
-    }
-  }, [educationalMessages]);
+  //       showAlert("warning", translation[userLanguage]["ai.error"]);
+  //       const delay = (ms) =>
+  //         new Promise((resolve) => setTimeout(resolve, 4000));
+  //       delay().then(() => {
+  //         hideAlert();
+  //       });
+  //     }
+  //   }
+  // }, [educationalMessages]);
 
   const getColorScheme = (group) => {
     const colorMap = {
@@ -2108,15 +2107,15 @@ const Step = ({
           >
             <span style={{ fontSize: "50%" }}>
               <IconButton
-                width="12px"
-                height="18px"
+                width="18px"
+                height="24px"
                 boxShadow="0px 0px 0.25px 0.5px #ececec"
                 // border="1px solid #ececec"
                 background="blue.100"
                 opacity="0.75"
                 color="blue.600"
                 icon={<EmailIcon padding="4px" fontSize="18px" />}
-                mr={2}
+                mr={3}
                 onMouseDown={() =>
                   (window.location.href = `mailto:sheilfer@robotsbuildingeducation.com?subject=Civico ${translation[userLanguage]["email.question"]} ${currentStep}: ${step.question.questionText} | ${step.description}&body=${translation[userLanguage]["email.donotdelete"]}       \n\n ${JSON.stringify(emailText)}  `)
                 }
@@ -2127,8 +2126,8 @@ const Step = ({
                 }}
               />
               <IconButton
-                width="12px"
-                height="18px"
+                width="18px"
+                height="24px"
                 boxShadow="0px 0px 0.25px 0.5px #ececec"
                 background="blue.100"
                 opacity="0.75"
@@ -2200,6 +2199,30 @@ const Step = ({
                   }, 1500);
                 }}
               />
+              <IconButton
+                width="18px"
+                height="24px"
+                boxShadow="0px 0px 0.5px 1px #ececec"
+                background="blue.100"
+                opacity="0.75"
+                color="blue.600"
+                icon={<FaHeartCircleBolt padding="4px" fontSize="12px" />}
+                mr={3}
+                onMouseDown={() => {
+                  //open modal
+                  onSocialFeedModalOpen();
+                  return;
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    onSocialFeedModalOpen();
+                    //open modal
+                    return;
+                  }
+                }}
+              />
+              <br />
+              <br />
               {translation[userLanguage]["app.progress"]}:{" "}
               {calculateProgress().toFixed(2)}% |{" "}
               {translation[userLanguage]["chapter"]}: {step.group}&nbsp;|&nbsp;
@@ -2664,6 +2687,15 @@ const Step = ({
             educationalContent={educationalContent}
             userLanguage={userLanguage}
           />
+
+          {isSocialFeedModalOpen ? (
+            <SocialFeedModal
+              userLanguage={userLanguage}
+              currentStep={currentStep}
+              isOpen={isSocialFeedModalOpen}
+              onClose={onSocialFeedModalClose}
+            />
+          ) : null}
 
           <>
             <AwardModal

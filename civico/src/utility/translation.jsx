@@ -3,6 +3,34 @@ import { DataTags } from "../elements/DataTag";
 
 export let translation = {
   en: {
+    "learnwithnostr.intructions":
+      "Connect with others using decentralized education technology!",
+    "modal.bitcoinMode.instructions.createWallet.1":
+      "1. The goal is to create scholarships with learning!",
+
+    "modal.bitcoinMode.instructions.createWallet.2":
+      "Selecting a recipient and creating a wallet allows you to deposit a maximum of about $0.01 in Bitcoin. When you answer a question, your Bitcoin deposit gets spent and sent to your receipient!",
+
+    "modal.bitcoinMode.instructions.createWallet.3":
+      "We recommend using Cash App to buy Bitcoin and connect your deposit!",
+
+    //deposit bitcoin
+    "modal.bitcoinMode.instructions.deposit.1":
+      "Press deposit to generate a QR code that you can scan or an address you can send to. This will request about $0.05 in Bitcoin from your Bitcoin wallet.",
+
+    "modal.bitcoinMode.instructions.activeWallet.1":
+      "You're now using Bitcoin!",
+
+    "modal.bitcoinMode.instructions.activeWallet.2":
+      "Answer more questions to create scholarships with learning.",
+    "modal.bitcoinMode.instructions.activeWallet.3":
+      "Verify your transactions ",
+
+    "modal.bitcoinMode.instructions.activeWallet.4": "in the public record",
+    "deposit.button": "Deposit",
+    "createWallet.button": "Create wallet",
+    "select.recipient": "Select your scholarship recipient",
+    "disabled.select.soon": "More schools, teachers and students soon!",
     "uscis.website.instructions.one": `This answer changes over time. Visit`,
     "uscis.website.instructions.two": `to learn the current answer.`,
     "chatcom.instructions.1":
@@ -48,7 +76,7 @@ export let translation = {
     "nostrContent.onboardedProfileAbout":
       "A student onboarded with Robots Building Education",
     "nostrContent.introductionPost":
-      "gm nostr! I'm here from Tiktok after creating an account with https://civico.app where I can learn about civics, citizenship and legal literacy with AI. Looking forward to meeting folks in the cypherpunk community! #introductions #LearnWithNostr",
+      "gm nostr! I'm here from Tiktok after creating an account with https://civico.app where I can learn about civics, citizenship and legal literacy with AI. Looking forward to meeting folks in the cypherpunk community! #LearnWithNostr",
 
     "createAccount.successMessage": "That's it!",
     "createAccount.awareness":
@@ -567,6 +595,34 @@ export let translation = {
     analyzer: "Analyzing your progress & creating new question card",
   },
   es: {
+    "learnwithnostr.intructions":
+      "Conéctate con otros utilizando tecnología educativa descentralizada.",
+    "modal.bitcoinMode.instructions.createWallet.1":
+      "1. ¡El objetivo es crear becas con aprendizaje!",
+
+    "modal.bitcoinMode.instructions.createWallet.2":
+      "Seleccionar un destinatario y crear una billetera te permite depositar un máximo de aproximadamente $0.01 en Bitcoin. ¡Cuando respondes una pregunta, tu depósito en Bitcoin se gasta y se envía a tu destinatario!",
+
+    "modal.bitcoinMode.instructions.createWallet.3":
+      "¡Recomendamos usar Cash App para comprar Bitcoin y conectar tu depósito!",
+
+    //depositar bitcoin
+    "modal.bitcoinMode.instructions.deposit.1":
+      "Presiona depositar para generar un código QR que puedes escanear o una dirección a la que puedes enviar. Esto solicitará aproximadamente $0.05 en Bitcoin desde tu billetera de Bitcoin.",
+
+    "modal.bitcoinMode.instructions.activeWallet.1":
+      "¡Ahora estás usando Bitcoin!",
+
+    "modal.bitcoinMode.instructions.activeWallet.2":
+      "Responde más preguntas para crear becas con aprendizaje.",
+    "modal.bitcoinMode.instructions.activeWallet.3":
+      "Verifica tus transacciones",
+
+    "modal.bitcoinMode.instructions.activeWallet.4": "en el registro público",
+    "deposit.button": "Depositar",
+    "createWallet.button": "Crear billetera",
+    "select.recipient": "Selecciona el destinatario de tu beca",
+    "disabled.select.soon": "¡Pronto más escuelas, profesores y estudiantes!",
     "uscis.website.instructions.one":
       "Esta respuesta cambia con el tiempo. Visite",
     "uscis.website.instructions.two": "para conocer la respuesta actual.",
@@ -663,7 +719,7 @@ export let translation = {
     "nostrContent.onboardedProfileAbout":
       "Un estudiante se unió con Robots Building Education",
     "nostrContent.introductionPost":
-      "gm nostr! Vengo de TikTok después de crear una cuenta en https://civico.app, donde puedo aprender sobre civismo, ciudadanía y alfabetización legal con IA. ¡Espero conocer a personas de la comunidad cypherpunk! #introductions #LearnWithNostr",
+      "gm nostr! Vengo de TikTok después de crear una cuenta en https://civico.app, donde puedo aprender sobre civismo, ciudadanía y alfabetización legal con IA. ¡Espero conocer a personas de la comunidad cypherpunk! #LearnWithNostr",
     "createAccount.isCreating": "Creando cuenta... 1/3",
     "createAccount.isCreatingProfile": "Creando perfil... 2/3",
     // "createAccount.isCreatingProfilePicture": "Creando foto de perfil... 3/4",
