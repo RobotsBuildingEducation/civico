@@ -3,6 +3,8 @@ import { DataTags } from "../elements/DataTag";
 
 export let translation = {
   en: {
+    "change.recipient": "Change your scholarship recipient",
+
     "learnwithnostr.intructions":
       "Connect with others using decentralized education technology!",
     "modal.bitcoinMode.instructions.createWallet.1":
@@ -595,6 +597,8 @@ export let translation = {
     analyzer: "Analyzing your progress & creating new question card",
   },
   es: {
+    "change.recipient": "Cambiar tu beneficiario de la beca",
+
     "learnwithnostr.intructions":
       "Conéctate con otros utilizando tecnología educativa descentralizada.",
     "modal.bitcoinMode.instructions.createWallet.1":

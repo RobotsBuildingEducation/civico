@@ -1463,17 +1463,17 @@ const Step = ({
   // Handle answer submission
   const handleAnswerClick = async () => {
     // Retrieve the current count from localStorage
-    let ansrctrl = parseInt(localStorage.getItem("ansrctrl") || "0", 10);
+    // let ansrctrl = parseInt(localStorage.getItem("ansrctrl") || "0", 10);
 
-    // Check if the user has already generated 3 questions
-    if (ansrctrl >= 10) {
-      // Silently skip the function
-      return;
-    }
+    // // Check if the user has already generated 3 questions
+    // if (ansrctrl >= 10) {
+    //   // Silently skip the function
+    //   return;
+    // }
 
-    // Increment the counter and store it back in localStorage
-    ansrctrl += 1;
-    localStorage.setItem("ansrctrl", ansrctrl);
+    // // Increment the counter and store it back in localStorage
+    // ansrctrl += 1;
+    // localStorage.setItem("ansrctrl", ansrctrl);
 
     resetMessages();
     setFeedback("");
@@ -1972,17 +1972,17 @@ const Step = ({
 
   const handleGenerateNewQuestion = async () => {
     // Retrieve the current count from localStorage
-    let gnrtctrl = parseInt(localStorage.getItem("gnrtctrl") || "0", 10);
+    // let gnrtctrl = parseInt(localStorage.getItem("gnrtctrl") || "0", 10);
 
-    // Check if the user has already generated 3 questions
-    if (gnrtctrl >= 10) {
-      // Silently skip the function
-      return;
-    }
+    // // Check if the user has already generated 3 questions
+    // if (gnrtctrl >= 10) {
+    //   // Silently skip the function
+    //   return;
+    // }
 
-    // Increment the counter and store it back in localStorage
-    gnrtctrl += 1;
-    localStorage.setItem("gnrtctrl", gnrtctrl);
+    // // Increment the counter and store it back in localStorage
+    // gnrtctrl += 1;
+    // localStorage.setItem("gnrtctrl", gnrtctrl);
     setGeneratedQuestion([]);
     resetNewQuestionMessages();
     const fetchUserAnswers = async () => {
